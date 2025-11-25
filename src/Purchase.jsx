@@ -1,8 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import properties from "./Properties.json";
-import { useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
-function Purchase() {
+function Purchase(addToCart) {
+const navigate = useNavigate();
+  const [items, setItems] = useState([]);
+  const [itemsInCart, setitemsInCart] = useState([]);
+
+  const handleItemsInCart = (property, e) => {
+    e.stopPropagation(); // prevent opening product page
+    addToCart(property);
+
+    // mark this item as liked
+    if (!itemsInCart.includes(property.id)) {
+      setitemsInCart([...likedItems, property.id]);
+    }
+  };
+
+
+
+
+
    const orderDay = new Date().toLocaleDateString();
     const today = new Date();
     const duration=today.getDate()
@@ -12,7 +30,7 @@ function Purchase() {
  const product=properties.find(item=>item.id==id)
  if (!product) return <h2>product not found</h2>
   return (
-    <div className="bg-gray-500 text-black mt-20 mb-10 ">
+    <div className="bg-gray-500 text-black mt-20 mb-20 p-1 ">
        
       <h2 className="text-2xl bg-white">Details</h2>
       <img src={product.picture} alt="" className="max-w-50 max-h-50 p-2 m-1" />
@@ -107,12 +125,12 @@ function Purchase() {
             <span>Pick-up station</span>
             <br /> <span>Free delivery</span>{" "}
           </div>
-          ready for pickup betweendate1 anddate2
+          ready for pickup between {orderDay} and {pickUpDate}
         </div>
         <div>
          <span className="text-2xl"> <ion-icon name="walk-outline"></ion-icon></span> <span>Door delivery</span>
-          <br /> <span> delivery fees</span>
-          ready for pickup between {orderDay} and {pickUpDate}
+          <br /> <span className="mx-1"> delivery fees</span> 
+           ready for pickup between {orderDay} and {pickUpDate}
         </div>
         <div>
           <span className="text-2xl"><ion-icon name="repeat-outline"></ion-icon></span>
@@ -120,13 +138,17 @@ function Purchase() {
         </div>
       </div>
       <div className="bg-white text-2xl flex gap-5" >
-        <button className=" text-amber-500 outline m-1 p-1 rounded">
+        <Link to="/BookMark"><button className=" text-amber-500 outline m-1 p-1 rounded">
           <ion-icon name="home-outline"></ion-icon>
         </button>
-        <button className=" text-amber-500 outline m-1 p-1 rounded">
+         </Link>
+       
+       <a href="tel:+233597788861"> <button className=" text-amber-500 outline m-1 p-1 rounded">
           <ion-icon name="call-outline"></ion-icon>
-        </button >
-        <button className="bg-amber-500 text-white flex   items-center  m-1 p-1 rounded">
+         
+        </button ></a>
+        
+        <button className={` bg-amber-500 text-white flex   items-center  m-1 p-1 rounded`}>
           <ion-icon name="cart-outline"></ion-icon> Add to cart
         </button>
       </div>

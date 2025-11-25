@@ -19,7 +19,7 @@ function Contact() {
         </div>
         <br /> Login to see your balance
       </div>
-      <div className="gap-2 flex">
+      <div className="gap-2 flex flex-row">
         <div>
           <button className="bg-amber-300 rounded text-2xl text-white px-7 py-2">
             <ion-icon name="chatbox-ellipses-outline"></ion-icon> Live chat
