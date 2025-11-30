@@ -4,10 +4,10 @@ import image1 from "../src/TV.png";
 import image2 from "../src/image2.png";
 import { useNavigate } from "react-router-dom";
 
-function ProductsCatalogue({ addToWishlist }) {
+function ProductsCatalogue({ addToWishlist,properties }) {
   const navigate = useNavigate();
   const [items, setItems] = useState([]);
-  
+
   // Track liked items by their ID
   const [likedItems, setLikedItems] = useState([]);
 
