@@ -18,13 +18,7 @@ import {
 } from "@heroicons/react/20/solid";
 import properties from "../Properties.json"; // your product data
 
-const sortOptions = [
-  { name: "Most Popular", href: "#", current: true },
-  { name: "Best Rating", href: "#", current: false },
-  { name: "Newest", href: "#", current: false },
-  { name: "Price: Low to High", href: "#", current: false },
-  { name: "Price: High to Low", href: "#", current: false },
-];
+
 
 const families = [
   "electronics",
@@ -33,6 +27,16 @@ const families = [
   "Jewelry",
   "Education",
   "Utensils",
+];
+
+
+
+const sortOptions = [
+  { name: "ELECTRONICS", href: "#electronics", current: true },
+  { name: "FASION", href: "#fasion", current: false },
+  { name: "OFFICIAL", href: "#Official", current: false },
+  { name: "JEWELRY", href: "#Jewelry", current: false },
+  { name: "EDUCATION", href: "#Education", current: false },
 ];
 
 function classNames(...classes) {
@@ -106,17 +110,17 @@ export default function Example() {
 
                 <MenuItems
                   transition
-                  className="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md shadow-2xl ring-1 ring-black/5 focus:outline-hidden"
+                  className="absolute  right-0 z-10 mt-2 w-40 origin-top-right rounded-md shadow-2xl ring-1 ring-blue/2 focus:outline-hidden"
                 >
-                  <div className="py-1">
+                  <div className="py-1 text-white">
                     {sortOptions.map((option) => (
                       <MenuItem key={option.name}>
                         <a
                           href={option.href}
                           className={classNames(
                             option.current
-                              ? "font-medium text-gray-900"
-                              : "text-gray-500",
+                              ? "font-medium text-white"
+                              : "text-white-gray-500",
                             "block px-4 py-2 text-sm"
                           )}
                         >
@@ -145,12 +149,12 @@ export default function Example() {
             </div>
           </div>
 
-          {/* Products Section Grouped by Family */}
+          
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
             {families.map((family) => (
-              // ONLY CHANGE ADDED ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+              
               <div key={family} className="mb-10" id={family}>
-              {/* ↑↑↑ ONLY THIS LINE WAS CHANGED */}
+              
 
                 <h2 className="text-2xl font-bold text-amber-300 mb-4">
                   {family}

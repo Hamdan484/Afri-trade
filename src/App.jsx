@@ -11,7 +11,10 @@ import properties from "./Properties.json";
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
-  const [wishlist, setWishlist] = useState([]);
+  const [wishlist, setWishlist] = useState(()=>{
+    const saved=localStorage.getItem("storedWishlist");
+   return saved ? JSON.parse(saved) : [];
+  })
   const [userInput, setUserInput] = useState("");
   const [filteredProperties, setFilteredProperties] = useState(properties);
 
@@ -38,7 +41,7 @@ function App() {
         item?.name?.toLowerCase().includes(userInput.toLowerCase())
       );
       setFilteredProperties(filtered);
-    }, 300);
+    }, 1000);
 
     return () => clearTimeout(delaySearch);
   }, [userInput]);
@@ -61,7 +64,7 @@ function App() {
           />
 
           {/* DROPDOWN MENU */}
-          <span className="my-1 flex gap-4 font-bold relative">
+          <span className="my-1 flex gap-4 font-bold relative text-3xl">
             <ion-icon
               name="ellipsis-horizontal-outline"
               onClick={() => setMenuOpen(!menuOpen)}
@@ -129,7 +132,7 @@ function App() {
           <Route path="/BookMark" element={<BookMark />} />
         </Routes>
 
-        <Footer />
+        <Footer/>
       </div>
     </BrowserRouter>
   );
